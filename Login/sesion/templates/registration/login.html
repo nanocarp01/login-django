@@ -1,0 +1,50 @@
+{% extends 'registration/home.html' %}
+{% block title%}Login{% endblock %}
+{% block content %}
+
+<div class="login bg-white shadow-lg rounded-3">
+    <h1 class="title">Iniciar Sesión</h1>
+        
+    <form method="post"  class="form">
+    {% csrf_token %}   
+    <input type="hidden" name="next" value="{{ next }}">
+        <div class="field">
+            <label>Username</label>
+            <div class="control">
+                <input type="text" class="input" name="username" id="id_username">
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <div class="control mb-1 p-1">
+                <input type="password" class="input" name="password" id="id_password">
+            </div>
+        </div>
+        
+        <div class="field">
+            <div class="control">
+                <button class="btn btn-primary m-3 rounded-pill">Iniciar</button>
+                <br>
+                <a href="{% url 'sesion:password_reset' %}">Olvide mi contraseña</a>
+                <br>
+                <a href="{% url 'sesion:registro' %}">Resgistrar</a>
+            </div>
+            {% if form.errors %}
+            <div class="bg-danger bg-gradient text-white m-2 p-2">
+            Your username and password didn't match! Please try again!
+            </div>
+            {% endif %}
+            
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
